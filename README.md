@@ -21,7 +21,7 @@ el código de `Control de Agua` de varias maneras.
 Puede usar `installer` en la misma computadora en la que lo descargó, con Python o con ejecutable (`.exe`). Para usar Python,
 busque el archivo `installer.py`; y para usar el ejecutable, busque `Installer.exe` en el directorio `build`.
 
-### Transportar el código
+### Transportar el código mediante una unidad USB
 
 Puede pasar el código de una computadora a otra con `installer`. Pase la carpeta que lo contiene (y que contiene el ZIP) a una unidad de USB. Luego
 introduzca la unidad en otro ordenador. Luego, instale con normalidad desde la USB. Finalmente, extraiga la unidad.
