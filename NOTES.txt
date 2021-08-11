@@ -1,0 +1,2 @@
+Algunos errores pueden ser reportados. Sin embargo, el instalador no debe presentar problema al instalar (a lo 
+mejor al salir de la consola, pero ya es despues de instalar con exito).
