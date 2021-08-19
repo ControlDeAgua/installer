@@ -49,7 +49,6 @@ is not being used by any other program. """+Style.BRIGHT+"Press Enter if you are
         z.extractall('C:/Program Files/Control de Agua')
         print(Fore.GREEN+Style.BRIGHT+"completely done. Press Enter if you are done.", end=" ")
         s = getpass.getpass("")
-        startfile("C:/Program Files/Control de Agua/Control de Agua.lnk")
     except Exception as e:
         print(Style.BRIGHT+Fore.RED+"An error ocurred."+"\n"+"  Error:", str(e))
         print("Press Enter to close.", end="")
