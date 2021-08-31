@@ -5,12 +5,30 @@ Instalador del producto principal de @ControlDeAgua.
 
 Primero, descargue (y/o modifique) el código en formato ZIP (puede buscarlo en https://github.com/ControlDeAgua/ControlDeAgua/releases). Asegúrese de que el archivo
 ZIP se llame `Control de Agua-1.0.0.zip` a la hora de correr el instalador. Procure que esté en el mismo directorio que el programa (aplica
-lo mismo en caso de ejecutables).
+lo mismo en caso de ejecutables). Además, debe proporcionar una carpeta vacía que se llame `empty_folder` para
 
 Si desea usar el instalador en ejecutable (y no en Python), puede usar este comando en el mismo directorio que el programa:
 
 ```
 setup.py build
+```
+
+Al final, la carpeta debe tener por lo menos estos elementos:
+
+```
++- Carpeta del instalador
+|  +- build
+|  |  +- exe.win-amd64-3.8 (el nombre puede variar)
+|  |  |  +- lib
+|  |  |  |- ...(la biblioteca binaria de la app)
+|  |  |  +- empty_folder
+|  |  |  Control de Agua-1.0.0.zip
+|  |  |- Installer.exe
+|  |-
+|  +- empty_folder
+|  Control de Agua-1.0.0.zip
+|  installer.py
+|- setup.py
 ```
 
 Una vez que haga esto, puede transportar e instalar
