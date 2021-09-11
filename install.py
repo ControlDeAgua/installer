@@ -18,7 +18,7 @@ def pause(amount: float = 1.0) -> None:
     except KeyboardInterrupt:
         pass
     except Exception as e:
-        print("Unexpected error:", str(e))
+        print("Unexpected error:", str(e), f"{type(e).__name__}")
 
 if __name__ == '__main__':
     try:
@@ -26,7 +26,7 @@ if __name__ == '__main__':
         print(Fore.GREEN+"Welcome to the Diego Ramirez' installer!")
         print("""Before installing, please get sure the folder 'C:/Program Files/Control de Agua'
 is not being used by any other program. """+Style.BRIGHT+"Press Enter if you are ready.", end="")
-        s = getpass.getpass(" ")
+        getpass.getpass(" ")
         print(Style.BRIGHT+Fore.GREEN+"Installing 'Control de Agua' on 'C:/Program Files/Control de Agua'...")
         if not os.path.exists("C:/Program Files/Control de Agua"):
             print(Fore.GREEN+"Generating the destination folder...")
@@ -48,10 +48,16 @@ is not being used by any other program. """+Style.BRIGHT+"Press Enter if you are
         z = zipfile.ZipFile("Control de Agua-1.0.0.zip")
         z.extractall('C:/Program Files/Control de Agua')
         print(Fore.GREEN+Style.BRIGHT+"completely done. Press Enter if you are done.", end=" ")
-        s = getpass.getpass("")
+        getpass.getpass("")
+    except OSError as e:
+        print(Fore.YELLOW+f"The OS system raised an error:\n {str(e)}\n")
+        print("""Check the permissions, check if no other program is using 'C:/Program FIles/Control De Agua'
+and try again.""", end="")
+        getpass.getpass(" ")
     except Exception as e:
-        print(Style.BRIGHT+Fore.RED+"An error ocurred."+"\n"+"  Error:", str(e))
+        print(Style.BRIGHT+Fore.RED+"An unexpected error ocurred."+"\n"+"  Error:", str(e)+"\n")
+        print(Style.BRIGHT+Fore.RED+"Please report this at <https://github.com/ControlDeAgua/bug_tracker/issues>.")
         print("Press Enter to close.", end="")
-        s = getpass.getpass(" ")
+        getpass.getpass(" ")
     print("Made with love by Diego Ramirez... see you!")
     pause(0.7)
