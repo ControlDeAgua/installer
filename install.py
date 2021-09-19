@@ -1,7 +1,7 @@
 import sys
 
-if not sys.platform == "win32":
-    sys.exit("this installer was generated for win32 systems")
+if not sys.platform == "win32" or sys.version_info < (3, 6):
+    sys.exit("this installer was generated for win32 systems with Python 3.6 or greater")
 
 import getpass
 import zipfile
