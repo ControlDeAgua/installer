@@ -60,10 +60,12 @@ is not being used by any other program. """+Style.BRIGHT+"Press Enter if you are
         print("""Check the permissions, check if no other program is using 'C:/Program FIles/Control De Agua'
 and try again.""", end="")
         getpass.getpass(" ")
+    except KeyboardInterrupt:
+        print(Fore.CYAN+"Operation cancelled by user. The original installation may be damaged.")
     except Exception as e:
         print(Style.BRIGHT+Fore.RED+"An unexpected error ocurred."+"\n"+"  Error:", str(e)+"\n")
         print(Style.BRIGHT+Fore.RED+"Please report this at <https://github.com/ControlDeAgua/bug_tracker/issues>.")
         print("Press Enter to close.", end="")
         getpass.getpass(" ")
-    print("Made with love by Diego Ramirez... see you!")
+    print("Installer made with love by Diego Ramirez... see you!")
     pause(0.7)
