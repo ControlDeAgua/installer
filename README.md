@@ -1,5 +1,5 @@
 # `installer`
-Instalador del producto principal de @ControlDeAgua.
+Instalador del producto principal de [@ControlDeAgua](https://github.com/ControlDeAgua).
 
 ## Método recomendado de uso
 
@@ -49,4 +49,4 @@ De esta forma, usted puede tener un solo `installer` para subir diversas copias 
 ## Notas
 
 - Al igual que `Control de Agua`, `installer` solo está disponible para computadoras Windows.
-- Si desea correr los archivos en Python, deberá instalar Python 3.6 o superior.
+- Si desea correr los archivos en Python, deberá instalar [Python 3.6 o superior](https://python.org/downloads).
