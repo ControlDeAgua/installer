@@ -18,7 +18,8 @@ def pause(amount: float = 1.0) -> None:
     except KeyboardInterrupt:
         pass
     except Exception as e:
-        print("Unexpected error:", str(e), f"{type(e).__name__}")
+        # really strange case, that should be reported as soon as possible
+        print("Unexpected error:", f"{type(e).__name__}: {str(e)}")
 
 if __name__ == '__main__':
     try:
@@ -35,33 +36,34 @@ is not being used by any other program. """+Style.BRIGHT+"Press Enter if you are
             os.makedirs("Control de Agua")
             os.chdir(actual_cwd)
         else:
-            print(Fore.YELLOW+"warning: the destination folder already exists.")
+            print(Fore.YELLOW+"WARNING: The destination folder already exists. We will try to remove it.")
             print(Fore.GREEN+"Removing the previous folder...")
             shutil.rmtree("C:/Program Files/Control de Agua")
             actual_cwd = os.getcwd()
             os.chdir("C:/Program Files/")
             os.makedirs("Control de Agua")
             os.chdir(actual_cwd)
-        print(Fore.GREEN+"installing source code (python)... please wait...")
+        print(Fore.GREEN+"installing source code (python scripts)... please wait...")
         pause(0.7)
-        print(Fore.GREEN+"installing other files (images, databases)...")
+        print(Fore.GREEN+"installing other files (images, databases, config files)...")
         pause(1)
-        print(Fore.GREEN+"installing binaries...")
+        print(Fore.GREEN+"installing binaries (compiled files, DLLs)...")
         pause(1.4)
-        print(Fore.GREEN+"installing the executables...")
+        print(Fore.GREEN+"installing the main executables...")
         pause(0.5)
-        print(Fore.GREEN+"pasting the contents... please wait...")
+        print(Fore.GREEN+"pasting the contents into the final directory... please wait...")
+        # this is the dangerous zone
         z = zipfile.ZipFile("Control de Agua-1.0.0.zip")
         z.extractall('C:/Program Files/Control de Agua')
-        print(Fore.GREEN+Style.BRIGHT+"completely done. Press Enter if you are done.", end=" ")
+        print(Fore.GREEN+Style.BRIGHT+"Done. Press Enter if you are done.", end=" ")
         getpass.getpass("")
     except OSError as e:
         print(Fore.YELLOW+f"The OS system raised an error:\n {str(e)}\n")
-        print("""Check the permissions, check if no other program is using 'C:/Program FIles/Control De Agua'
+        print("""Check the permissions, check if no other program is using 'C:/Program FIles/Control De Agua',
 and try again.""", end="")
         getpass.getpass(" ")
     except KeyboardInterrupt:
-        print(Fore.CYAN+"Operation cancelled by user. The original installation may be damaged.")
+        print(Fore.CYAN+"Operation cancelled by user. The final installation may be damaged or incomplete.")
     except Exception as e:
         print(Style.BRIGHT+Fore.RED+"An unexpected error ocurred."+"\n"+"  Error:", str(e)+"\n")
         print(Style.BRIGHT+Fore.RED+"Please report this at <https://github.com/ControlDeAgua/bug_tracker/issues>.")
