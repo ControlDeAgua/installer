@@ -1,2 +1,7 @@
+Nota para el desarrollador
+==========================
+
 Algunos errores pueden ser reportados. Sin embargo, el instalador no debe presentar problema al instalar (a lo 
 mejor al salir de la consola, pero ya es despues de instalar con exito).
+
+Para más información, visite <https://controldeagua.github.io/ControlDeAgua-docs/troubleshooting>.
