@@ -54,7 +54,11 @@ is not being used by any other program. """+Style.BRIGHT+"Press Enter if you are
         print(Fore.GREEN+"pasting the contents into the final directory... please wait...")
         # this is the dangerous zone
         z = zipfile.ZipFile("Control de Agua-1.0.0.zip")
+        zlist = z.namelist()
+        for member in zlist:
+            print(Fore.CYAN+"Extracting "+member+"...")
         z.extractall('C:/Program Files/Control de Agua')
+        z.close()
         print(Fore.GREEN+Style.BRIGHT+"Done. Press Enter if you are done.", end=" ")
         getpass.getpass("")
     except OSError as e:
@@ -63,7 +67,7 @@ is not being used by any other program. """+Style.BRIGHT+"Press Enter if you are
 and try again.""", end="")
         getpass.getpass(" ")
     except KeyboardInterrupt:
-        print(Fore.CYAN+"Operation cancelled by user. The final installation may be damaged or incomplete.")
+        print(Fore.YELLOW+"Operation cancelled by user. The final installation may be damaged or incomplete.")
     except Exception as e:
         print(Style.BRIGHT+Fore.RED+"An unexpected error ocurred."+"\n"+"  Error:", str(e)+"\n")
         print(Style.BRIGHT+Fore.RED+"Please report this at <https://github.com/ControlDeAgua/bug_tracker/issues>.")
