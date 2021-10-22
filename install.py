@@ -11,6 +11,11 @@ import time
 import shutil
 from colorama import init, Fore, Style
 
+
+class NoZipDistribution(Exception):
+    "There is no ZIP file to install the files."
+
+
 def pause(amount: float = 1.0) -> None:
     "use time.sleep to pause. This can be forced by typing Ctrl+C"
     try:
@@ -53,7 +58,19 @@ is not being used by any other program. """+Style.BRIGHT+"Press Enter if you are
         pause(0.5)
         print(Fore.GREEN+"pasting the contents into the final directory... please wait...")
         # this is the dangerous zone
-        z = zipfile.ZipFile("Control de Agua-1.0.0.zip")
+        try:
+            z = zipfile.ZipFile("Control de Agua-1.0.0.zip")
+        except FileNotFoundError:
+            # there are 2 options here:
+            # 1. There is no `Control de Agua-1.0.0.zip` on the same directory than
+            #    the installer. Just add it.
+            # 2. You are calling `install.py` or `Installer.exe` from somewhere else
+            #    (maybe with the `python` command). Since we are using the `os.getcwd()`
+            #    value to find the zip file, this case should fail.
+            # 
+            # To clarify this case, I added a separate message, to make the things
+            # easier (because `FileNotFoundError` is a subclass of `OSError`).
+            raise NoZipDistribution(os.getcwd())
         zlist = z.namelist()
         for member in zlist:
             print(Fore.CYAN+"Extracting "+member+"...")
@@ -61,6 +78,12 @@ is not being used by any other program. """+Style.BRIGHT+"Press Enter if you are
         z.close()
         print(Fore.GREEN+Style.BRIGHT+"Done. Press Enter if you are done.", end=" ")
         getpass.getpass("")
+    except NoZipDistribution as zip_exc:
+        # we set the exception `__str__` to the current cwd, so
+        # we can make things easier.
+        print(Fore.YELLOW+f"""Hmm... it seems like the file 'Control de Agua-1.0.0.zip' is not present.
+I'm looking at '{str(zip_exc)}'.
+Verify if you have the Zip archive on this directory, and then try it again.""")
     except OSError as e:
         print(Fore.YELLOW+f"The OS system raised an error:\n {str(e)}\n")
         print("""Check the permissions, check if no other program is using 'C:/Program FIles/Control De Agua',
