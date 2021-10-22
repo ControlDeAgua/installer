@@ -74,6 +74,7 @@ is not being used by any other program. """+Style.BRIGHT+"Press Enter if you are
         zlist = z.namelist()
         for member in zlist:
             print(Fore.CYAN+"Extracting "+member+"...")
+        print(Fore.GREEN+"Please wait... (don't press 'Ctrl' keys!)...")
         z.extractall('C:/Program Files/Control de Agua')
         z.close()
         print(Fore.GREEN+Style.BRIGHT+"Done. Press Enter if you are done.", end=" ")
@@ -86,7 +87,7 @@ I'm looking at '{str(zip_exc)}'.
 Verify if you have the Zip archive on this directory, and then try it again.""")
     except OSError as e:
         print(Fore.YELLOW+f"The OS system raised an error:\n {str(e)}\n")
-        print("""Check the permissions, check if no other program is using 'C:/Program FIles/Control De Agua',
+        print("""Check the permissions, check if no other program is using 'C:/Program Files/Control De Agua',
 and try again.""", end="")
         getpass.getpass(" ")
     except KeyboardInterrupt:
